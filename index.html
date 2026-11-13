@@ -386,19 +386,20 @@
     lip.position.y = topY - bandH * 0.30 + bandH / 2;
     g.add(lip);
 
-    var top = new THREE.Mesh(new THREE.CylinderGeometry(rOut * 0.99, rOut * 0.99, 0.1, 72), MAT.icing);
+    var top = new THREE.Mesh(new THREE.CylinderGeometry(rOut * 0.995, rOut * 0.995, 0.075, 72), MAT.icing);
     top.position.y = topY + 0.02;
     top.castShadow = true; top.receiveShadow = true;
     g.add(top);
 
-    var n = 9;
+    var n = 10;
     for (var i = 0; i < n; i++){
-      var a = (i / n) * Math.PI * 2 + seed * 0.7;
-      var long = 0.07 + Math.random() * 0.2;
-      var dr = 0.062 + Math.random() * 0.042;
+      var a = (i / n) * Math.PI * 2 + seed * 0.8 + (Math.random() - 0.5) * 0.16;
+      var dr = 0.042 + Math.random() * 0.022;
+      var kY = 2.6 + Math.random() * 2.0;
       var drip = new THREE.Mesh(new THREE.SphereGeometry(dr, 12, 12), MAT.icing);
-      drip.position.set(Math.cos(a) * rOut * 0.98, topY - bandH * 0.58 - long * 0.45, Math.sin(a) * rOut * 0.98);
-      drip.scale.set(1, 1.6 + long * 2.4, 1);
+      drip.position.set(Math.cos(a) * rOut * 1.002, topY - 0.104 - dr * kY, Math.sin(a) * rOut * 1.002);
+      drip.scale.set(0.92, kY, 0.92);
+      drip.castShadow = true;
       g.add(drip);
     }
     cake.add(g);
